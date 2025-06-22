@@ -3,25 +3,24 @@ export default function Footer() {
     <footer className="mt-20 py-12 border-t text-sm text-gray-600 dark:text-gray-400 grid grid-cols-1 sm:grid-cols-3 gap-4">
       <div>
         <h5 className="font-semibold mb-2">Social</h5>
-        <ul>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">LinkedIn</a></li>
-          <li><a href="#">Github</a></li>
+         <ul>
+          <li><a href="https://www.instagram.com/cotagonist/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/codymusser/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://x.com/Cotagonist" target="_blank" rel="noopener noreferrer">X</a></li>
         </ul>
       </div>
       <div>
         <h5 className="font-semibold mb-2">Links</h5>
         <ul>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="https://buildwithstudio.com" target="_blank" rel="noopener noreferrer">Studio</a></li>
+          <li><a href="mailto:cody[at]codymusser.com">Say Hello</a>
+</li>
         </ul>
       </div>
       <div>
         <h5 className="font-semibold mb-2">Other</h5>
         <ul>
-          <li><a href="#">OpenSea</a></li>
-          <li><a href="#">Dribbble</a></li>
+          <li>Made with 🔥 and 🍕 in NY State</li>
         </ul>
       </div>
     </footer>
