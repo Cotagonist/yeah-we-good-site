@@ -12,9 +12,36 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Yeah We Good",
-  description: "Hands-on product leadership services from Cody Musser for building and scaling products and businesses.",
+export const metadata = {
+  title: 'Yeah We Good',
+  description:
+    'Hands-on product leadership services from Cody Musser for building and scaling products and businesses.',
+  openGraph: {
+    title: 'Yeah We Good',
+    description:
+      'Hands-on product leadership services from Cody Musser for building and scaling products and businesses.',
+    url: 'https://yourdomain.com',
+    siteName: 'Yeah We Good',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Yeah We Good – Cody Musser Product Leadership',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Yeah We Good',
+    description:
+      'Hands-on product leadership services from Cody Musser for building and scaling products and businesses.',
+    images: ['/og-image.png'],
+  },
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
