@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { fetchPosts } from '../../../lib/fetchPosts';
 import { NextResponse } from 'next/server';
 
