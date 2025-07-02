@@ -1,5 +1,3 @@
-import { fetchPosts } from '../lib/fetchPosts';
-
 type Post = {
   title: string;
   link: string;
@@ -7,10 +5,7 @@ type Post = {
   categories: string[];
 };
 
-export default async function Posts() {
-  // Fetch posts at build time or per request (runs server-side)
-  const posts: Post[] = await fetchPosts();
-
+export default function Posts({ posts }: { posts: Post[] }) {
   if (!posts.length) {
     return <p className="text-center mt-6 text-gray-500">No posts found.</p>;
   }
