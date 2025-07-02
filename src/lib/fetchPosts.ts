@@ -1,22 +1,21 @@
-import { XMLParser } from 'fast-xml-parser';
+export interface RssItem {
+  title?: string;
+  link?: string;
+  pubDate?: string;
+  category?: string | string[];
+}
 
 export async function fetchPosts() {
-  // Fetch the RSS XML
-  const res = await fetch('https://medium.com/feed/@cotagonist');
-  const xml = await res.text();
+  const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@cotagonist');
+  if (!response.ok) {
+    throw new Error(`Failed to fetch RSS feed: ${response.statusText}`);
+  }
 
-  // Parse the XML into JS object
-  const parser = new XMLParser({
-    ignoreAttributes: false, // Keep attributes like "url"
-  });
-  const json = parser.parse(xml);
+  const data = await response.json();
 
-  // Medium's RSS feed structure:
-  // json.rss.channel.item is the array of posts
-  const items = json?.rss?.channel?.item || [];
+  const items: RssItem[] = data.items || [];
 
-  // Map to your simplified shape
-  return items.map((item: any) => ({
+  return items.map((item: RssItem) => ({
     title: item.title || 'Untitled',
     link: item.link || '#',
     date: item.pubDate || '',
