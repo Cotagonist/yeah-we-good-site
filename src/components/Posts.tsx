@@ -1,6 +1,4 @@
-'use client';
-
-import { useEffect, useState } from 'react';
+import { fetchPosts } from '../lib/fetchPosts';
 
 type Post = {
   title: string;
@@ -9,30 +7,9 @@ type Post = {
   categories: string[];
 };
 
-export default function Posts() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [visibleCount, setVisibleCount] = useState(10);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchPostsClient() {
-      try {
-        const res = await fetch('/api/posts');
-        const data = await res.json();
-        setPosts(data);
-      } catch (err) {
-        console.error('Error fetching posts:', err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchPostsClient();
-  }, []);
-
-  if (loading) {
-    return <p className="text-center mt-6 text-gray-500">Loading posts…</p>;
-  }
+export default async function Posts() {
+  // Fetch posts at build time or per request (runs server-side)
+  const posts: Post[] = await fetchPosts();
 
   if (!posts.length) {
     return <p className="text-center mt-6 text-gray-500">No posts found.</p>;
@@ -42,7 +19,7 @@ export default function Posts() {
     <section className="my-12">
       <h3 className="text-xl font-semibold mb-6">Latest posts</h3>
       <div className="space-y-4">
-        {posts.slice(0, visibleCount).map((post, idx) => (
+        {posts.map((post, idx) => (
           <a
             key={idx}
             href={post.link}
@@ -69,17 +46,6 @@ export default function Posts() {
           </a>
         ))}
       </div>
-
-      {visibleCount < posts.length && (
-        <div className="mt-6 text-center">
-          <button
-            className="text-sm px-4 py-2 rounded bg-black text-white dark:bg-white dark:text-black"
-            onClick={() => setVisibleCount((prev) => prev + 10)}
-          >
-            Load More
-          </button>
-        </div>
-      )}
     </section>
   );
 }
